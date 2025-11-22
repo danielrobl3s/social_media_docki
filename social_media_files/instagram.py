@@ -302,42 +302,51 @@ def main():
 
    """
 
-   # Display the menu to the user
-   menu = input("Welcome to the Instagram scraper script!, please select an option: \n"
-   "1. Scrape a Instagram Profile \n"
-   "2. Exit \n"
-   ">> "
-   )
+   with open("params_ig.json", "r") as f:
+    params = json.load(f)
 
-   # If the user selects option 1, prompt them to enter a username
+   username=params["username"]
+   filename=params["filename"]
+   length=params["length"]
 
-   if menu == "1":
-      username = input("Please enter the username of the Instagram profile you want to scrape: \n" \
-      ">> ")
+   execute(username, filename, length)
 
-   # If the username is empty it will throw an error, otherwise, executes the function 'execute'
+   # # Display the menu to the user
+   # menu = input("Welcome to the Instagram scraper script!, please select an option: \n"
+   # "1. Scrape a Instagram Profile \n"
+   # "2. Exit \n"
+   # ">> "
+   # )
+
+   # # If the user selects option 1, prompt them to enter a username
+
+   # if menu == "1":
+   #    username = input("Please enter the username of the Instagram profile you want to scrape: \n" \
+   #    ">> ")
+
+   # # If the username is empty it will throw an error, otherwise, executes the function 'execute'
       
-      if len(username) == 0:
-         print("Please enter a valid username.")
-         return
-      else:
-         # Prompt the user for the output file name
-         filename = input("Please enter a name for the output file (without extension): \n" \
-                          ">> ")
-         length = int(input("How many posts do you want to scrape? (min 5) \n" \
-                        ">> "))
+   #    if len(username) == 0:
+   #       print("Please enter a valid username.")
+   #       return
+   #    else:
+   #       # Prompt the user for the output file name
+   #       filename = input("Please enter a name for the output file (without extension): \n" \
+   #                        ">> ")
+   #       length = int(input("How many posts do you want to scrape? (min 5) \n" \
+   #                      ">> "))
          
-         # If the length is empty it will throw an error, otherwise, executes the function 'execute'
-         if length <= 0:
-            return
-         else:
+   #       # If the length is empty it will throw an error, otherwise, executes the function 'execute'
+   #       if length <= 0:
+   #          return
+   #       else:
 
-            #execute our function with no filters since there are none for instagram
-            execute(username, filename, length)
+   #          #execute our function with no filters since there are none for instagram
+   #          execute(username, filename, length)
             
 
-   else:
-      print("Goodbye!")
+   # else:
+   #    print("Goodbye!")
 
 
 

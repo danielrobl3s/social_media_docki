@@ -23,13 +23,14 @@ COPY social_media_files ./social_media_files
 
 # Copy parameters json
 COPY params.json ./params.json
+COPY params_ig.json ./params_ig.json
 
 # Create entrypoint script for xvfb
 RUN echo '#!/bin/bash\n\
 Xvfb :99 -ac -screen 0 1920x1080x24 &\n\
 export DISPLAY=:99\n\
 sleep 2\n\
-python social_media_files/facebook.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+python social_media_files/instagram.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
 # Run the entrypoint script
 CMD ["/app/entrypoint.sh"]
