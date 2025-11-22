@@ -12,21 +12,21 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up working directory
-WORKDIR /app
+WORKDIR ./app
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the scraper script
-COPY scraper_quote.py .
+COPY social_media_files ./social_media_files
 
 # Create entrypoint script for xvfb
 RUN echo '#!/bin/bash\n\
 Xvfb :99 -ac -screen 0 1920x1080x24 &\n\
 export DISPLAY=:99\n\
 sleep 2\n\
-python scraper_quote.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+python social_media_files/facebook.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
 # Run the entrypoint script
 CMD ["/app/entrypoint.sh"]
