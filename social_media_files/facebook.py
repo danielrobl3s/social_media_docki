@@ -298,58 +298,70 @@ def main():
 
    """
 
-   # Display the menu to the user
-   menu = input("Welcome to the Facebook scraper script!, please select an option: \n"
-   "1. Scrape a Facebook Profile \n"
-   "2. Exit \n"
-   ">> "
-   )
+   with open("params.json", "r") as f:
+    params = json.load(f)
 
-   # If the user selects option 1, prompt them to enter a username
+   username=params["username"]
+   filename=params["filename"]
+   length=params["length"]
+   year=params["year"]
+   month=params["month"]
+   day=params["day"]
 
-   if menu == "1":
-      username = input("Please enter the username of the Facebook profile you want to scrape: \n" \
-      ">> ")
+   execute(username, filename, length, year, month, day)
 
-   # If the username is empty it will throw an error, otherwise, executes the function 'execute'
+   # # Display the menu to the user
+   # menu = input("Welcome to the Facebook scraper script!, please select an option: \n"
+   # "1. Scrape a Facebook Profile \n"
+   # "2. Exit \n"
+   # ">> "
+   # )
+
+   # # If the user selects option 1, prompt them to enter a username
+
+   # if menu == "1":
+   #    username = input("Please enter the username of the Facebook profile you want to scrape: \n" \
+   #    ">> ")
+
+   # # If the username is empty it will throw an error, otherwise, executes the function 'execute'
       
-      if len(username) == 0:
-         print("Please enter a valid username.")
-         return
-      else:
-         # Prompt the user for the output file name
-         filename = input("Please enter a name for the output file (without extension): \n" \
-                          ">> ")
-         length = int(input("How many posts do you want to scrape? (min 5) \n" \
-                        ">> "))
+   #    if len(username) == 0:
+   #       print("Please enter a valid username.")
+   #       return
+   #    else:
+   #       # Prompt the user for the output file name
+   #       filename = input("Please enter a name for the output file (without extension): \n" \
+   #                        ">> ")
+   #       length = int(input("How many posts do you want to scrape? (min 5) \n" \
+   #                      ">> "))
          
-         # If the length is empty it will throw an error, otherwise, executes the function 'execute'
-         if length <= 0:
-            return
-         else:
-            # Prompt the user for the date to scrape
-            year = input("What year do you want to scrape? (YYYY) \n" \
-                        ">> ")
-            month = input("What month do you want to scrape? (Month (Example: abril) \n" \
-                          ">> ")
-            day = input("What day do you want to scrape? (DD) \n" \
-                        ">> ")
+   #       # If the length is empty it will throw an error, otherwise, executes the function 'execute'
+   #       if length <= 0:
+   #          return
+   #       else:
+   #          # Prompt the user for the date to scrape
+   #          year = input("What year do you want to scrape? (YYYY) \n" \
+   #                      ">> ")
+   #          month = input("What month do you want to scrape? (Month (Example: abril) \n" \
+   #                        ">> ")
+   #          day = input("What day do you want to scrape? (DD) \n" \
+   #                      ">> ")
             
-            # Apply filters, by year or not, month or not, day or not
-            if year:
-               if month:
-                  if day:
-                     execute(username, filename, length, year, month, day)
-                  else:
-                     execute(username, filename, length, year, month)
+   #          # Apply filters, by year or not, month or not, day or not
+   #          if year:
+   #             if month:
+   #                if day:
+   #                   execute(username, filename, length, year, month, day)
+   #                else:
+   #                   execute(username, filename, length, year, month)
 
-               else:
-                  execute(username, filename, length, year)
-            else:
-               execute(username, filename, length)
+   #             else:
+   #                execute(username, filename, length, year)
+   #          else:
+   #             execute(username, filename, length)
 
-   else:
-      print("Goodbye!")
+   # else:
+   #    print("Goodbye!")
 
 
 

@@ -110,6 +110,10 @@ class Driver:
       capabilities["goog:loggingPrefs"] = {"performance": "ALL"}
       
       options = Options()
+
+      options.add_argument('--no-sandbox')
+      options.add_argument('--disable-dev-shm-usage')
+      options.add_argument('--disable-gpu')
       
       if headless:
          options.add_argument("--headless=chrome")
@@ -136,7 +140,7 @@ class Driver:
             raise Exception("Invalid proxy list")
          
 
-      driver_service = Service('/Users/postadurango/Documents/scrapers/chromedriver-mac-arm64/chromedriver')
+      driver_service = Service('/usr/bin/chromedriver')
       driver = webdriver.Chrome(options=options, service=driver_service)
 
       

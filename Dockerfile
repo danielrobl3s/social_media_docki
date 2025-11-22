@@ -21,6 +21,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the scraper script
 COPY social_media_files ./social_media_files
 
+# Copy parameters json
+COPY params.json ./params.json
+
 # Create entrypoint script for xvfb
 RUN echo '#!/bin/bash\n\
 Xvfb :99 -ac -screen 0 1920x1080x24 &\n\
