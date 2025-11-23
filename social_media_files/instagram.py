@@ -59,9 +59,11 @@ def pandas_to_csv(data: list[dict], filename: str) -> None:
     # Create a DataFrame from the list of dictionaries
 
     df = pd.DataFrame([item for item in data])
+
+    output_path = f"/output_logs/{filename}.csv"
     
     # Save the DataFrame to a CSV file
-    df.to_csv(f'{filename}.csv', index=False)
+    df.to_csv(output_path, index=False)
 
 
 
@@ -309,13 +311,19 @@ def main():
    """
 
    with open("params_ig.json", "r") as f:
-    params = json.load(f)
+    params_list = json.load(f)
 
-   username=params["username"]
-   filename=params["filename"]
-   length=params["length"]
+   for params in params_list:
 
-   execute(username, filename, length)
+      username=params["username"]
+      filename=params["filename"]
+      length=params["length"]
+
+      print(f"\n[INFO] Running scraper for: {username}")
+      execute(username, filename, length)
+
+      random_sleeper = random.randint(5, 30)
+      time.sleep(random_sleeper)
 
    # # Display the menu to the user
    # menu = input("Welcome to the Instagram scraper script!, please select an option: \n"

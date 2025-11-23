@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
 # Set up working directory
 WORKDIR ./app
 
+RUN mkdir /output_logs
+
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
