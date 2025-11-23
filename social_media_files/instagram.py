@@ -276,6 +276,12 @@ def execute(username: str, filename: str, length: int = 10) -> None:
 
    time.sleep(4)
 
+   #dismiss the novelty button
+   novelty_button = "(//div[@role='button'])[last()]"
+   driver.find_element(By.XPATH, novelty_button).click()
+
+   time.sleep(4)
+
    #Start looking for the user
    find_user(driver, username)
 
