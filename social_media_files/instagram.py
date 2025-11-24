@@ -258,12 +258,6 @@ def execute(username: str, filename: str, length: int = 10) -> None:
 
    #Send credentials here
 
-   # DEBUG: dump full DOM to a file
-   with open(f"/output_logs/{username}_dom_dump.html", "w", encoding="utf-8") as f:
-      f.write(driver.page_source)
-
-   print("DOM dumped to /app/dom_dump.html")
-
    try:
       #email (replace with yours)
       driver.find_element(By.XPATH, email_field).send_keys(ig_mail)
@@ -277,6 +271,14 @@ def execute(username: str, filename: str, length: int = 10) -> None:
    except:
       passw_field_alternate = "(//input[@id])[2]"
       driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
+
+   time.sleep(3)
+
+   # DEBUG: dump full DOM to a file
+   with open(f"/output_logs/{username}_dom_dump.html", "w", encoding="utf-8") as f:
+      f.write(driver.page_source)
+
+   print("DOM dumped to /app/dom_dump.html")
 
    time.sleep(3)
 
