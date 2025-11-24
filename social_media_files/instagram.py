@@ -276,11 +276,16 @@ def execute(username: str, filename: str, length: int = 10) -> None:
       driver.find_element(By.XPATH, passw_field).send_keys(ig_pass)
    except:
       passw_field_alternate = "(//input[@id])[2]"
+      driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
 
    time.sleep(3)
 
-   #press log in button
-   driver.find_element(By.XPATH, enter_button).click()
+   try:
+      #press log in button
+      driver.find_element(By.XPATH, enter_button).click()
+   except:
+      enter_button_alternate = "//div[contains(text(), 'Log in')]"
+      driver.find_element(By.XPATH, enter_button_alternate)
 
    time.sleep(10)
 
