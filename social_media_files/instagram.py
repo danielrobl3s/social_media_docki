@@ -205,6 +205,12 @@ def find_user(driver: webdriver.Chrome, username: str) -> None:
    it takes only the driver as argument and applies the corresponding logic to find the user and start scraping
    """
 
+   # DEBUG: dump full DOM to a file
+   with open(f"/output_logs/{username}log_tags.html", "w", encoding="utf-8") as f:
+      f.write(driver.page_source)
+
+   print("DOM dumped to /app/dom_dump.html")
+
    #click the search button to open the left sidebar and start looking for a user
    search_button = "(//div[@class='x9f619 x3nfvp2 xr9ek0c xjpr12u xo237n4 x6pnmvc x7nr27j x12dmmrz xz9dl7a xpdmqnj xsag5q8 x1g0dm76 x80pfx3 x159b3zp x1dn74xm xif99yt x172qv1o x4afuhf x1lhsz42 x10v4vz6 xdoji71 x1dejxi8 x9k3k5o x8st7rj x11hdxyr x1eunh74 x1wj20lx x1obq294 x5a5i1n xde0f50 x15x8krk'])[2]"
    driver.find_element(By.XPATH, search_button).click()
@@ -271,14 +277,6 @@ def execute(username: str, filename: str, length: int = 10) -> None:
    except:
       passw_field_alternate = "(//input[@id])[2]"
       driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
-
-   time.sleep(3)
-
-   # DEBUG: dump full DOM to a file
-   with open(f"/output_logs/{username}_dom_dump.html", "w", encoding="utf-8") as f:
-      f.write(driver.page_source)
-
-   print("DOM dumped to /app/dom_dump.html")
 
    time.sleep(3)
 
