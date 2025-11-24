@@ -286,7 +286,7 @@ def execute(username: str, filename: str, length: int = 10) -> None:
       #press log in button
       driver.find_element(By.XPATH, enter_button).click()
    except:
-      enter_button_alternate = "//div[contains(text(), 'Log in')]"
+      enter_button_alternate = "//div[@role='button']"
       driver.find_element(By.XPATH, enter_button_alternate)
 
    time.sleep(10)
