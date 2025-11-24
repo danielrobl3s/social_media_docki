@@ -259,17 +259,23 @@ def execute(username: str, filename: str, length: int = 10) -> None:
    #Send credentials here
 
    # DEBUG: dump full DOM to a file
-   with open("/app/dom_dump.html", "w", encoding="utf-8") as f:
+   with open(f"/output_logs/{username}_dom_dump.html", "w", encoding="utf-8") as f:
       f.write(driver.page_source)
 
    print("DOM dumped to /app/dom_dump.html")
 
+   try:
+      #email (replace with yours)
+      driver.find_element(By.XPATH, email_field).send_keys(ig_mail)
+   except:
+      email_field_alternate = "(//input[@id])[1]"
+      driver.find_element(By.XPATH, email_field_alternate).send_keys(ig_mail)
    
-   #email (replace with yours)
-   driver.find_element(By.XPATH, email_field).send_keys(ig_mail)
-   
-   #password (replace with yours)
-   driver.find_element(By.XPATH, passw_field).send_keys(ig_pass)
+   try:
+      #password (replace with yours)
+      driver.find_element(By.XPATH, passw_field).send_keys(ig_pass)
+   except:
+      passw_field_alternate = "(//input[@id])[2]"
 
    time.sleep(3)
 
@@ -278,16 +284,27 @@ def execute(username: str, filename: str, length: int = 10) -> None:
 
    time.sleep(10)
 
-   #Skip the "Save your login info?" dialog with "not now" button
-   #XPATH for "not now" button
-   not_now_button = "//div[@class='x78zum5 xdt5ytf x1e56ztr']//div"
-   driver.find_element(By.XPATH, not_now_button).click()
+   try:
+      #Skip the "Save your login info?" dialog with "not now" button
+      #XPATH for "not now" button
+      not_now_button = "//div[@class='x78zum5 xdt5ytf x1e56ztr']//div"
+      driver.find_element(By.XPATH, not_now_button).click()
+
+   except:
+      pass
+
+      print("No 'Not Now' button, continuing...")
 
    time.sleep(4)
 
-   #dismiss the novelty button
-   novelty_button = "(//div[@role='button'])[last()]"
-   driver.find_element(By.XPATH, novelty_button).click()
+   try:
+      #dismiss the novelty button
+      novelty_button = "(//div[@role='button'])[last()]"
+      driver.find_element(By.XPATH, novelty_button).click()
+
+   except:
+      pass
+      print("No novelty button")
 
    time.sleep(4)
 
