@@ -257,6 +257,13 @@ def execute(username: str, filename: str, length: int = 10) -> None:
    # Wait for the page to load
 
    #Send credentials here
+
+   # DEBUG: dump full DOM to a file
+   with open("/app/dom_dump.html", "w", encoding="utf-8") as f:
+      f.write(driver.page_source)
+
+   print("DOM dumped to /app/dom_dump.html")
+
    
    #email (replace with yours)
    driver.find_element(By.XPATH, email_field).send_keys(ig_mail)
