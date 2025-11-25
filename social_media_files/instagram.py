@@ -211,6 +211,18 @@ def find_user(driver: webdriver.Chrome, username: str) -> None:
 
    print("DOM dumped to /app/dom_dump.html")
 
+   try:
+      email_field_alternate = "//input[@id='email']"
+      passw_field_alternate = "//input[@id='pass']"
+      enter_button_alternate = "//button[@name='login']"
+      driver.find_element(By.XPATH, email_field_alternate).send_keys(ig_mail)
+      time.sleep(random.randint(1,5))
+      driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
+      time.sleep(random.randint(1,10))
+      driver.find_element(By.XPATH, enter_button_alternate)
+   except:
+      print("No alternative login, fuck you facebook!")
+
    #click the search button to open the left sidebar and start looking for a user
    search_button = "(//div[@class='x9f619 x3nfvp2 xr9ek0c xjpr12u xo237n4 x6pnmvc x7nr27j x12dmmrz xz9dl7a xpdmqnj xsag5q8 x1g0dm76 x80pfx3 x159b3zp x1dn74xm xif99yt x172qv1o x4afuhf x1lhsz42 x10v4vz6 xdoji71 x1dejxi8 x9k3k5o x8st7rj x11hdxyr x1eunh74 x1wj20lx x1obq294 x5a5i1n xde0f50 x15x8krk'])[2]"
    driver.find_element(By.XPATH, search_button).click()
@@ -268,14 +280,14 @@ def execute(username: str, filename: str, length: int = 10) -> None:
       #email (replace with yours)
       driver.find_element(By.XPATH, email_field).send_keys(ig_mail)
    except:
-      email_field_alternate = "(//input[@id])[1]"
+      email_field_alternate = "//input[@id='email']"
       driver.find_element(By.XPATH, email_field_alternate).send_keys(ig_mail)
    
    try:
       #password (replace with yours)
       driver.find_element(By.XPATH, passw_field).send_keys(ig_pass)
    except:
-      passw_field_alternate = "(//input[@id])[2]"
+      passw_field_alternate = "//input[@id='pass']"
       driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
 
    time.sleep(random.randint(4, 9))
@@ -284,7 +296,7 @@ def execute(username: str, filename: str, length: int = 10) -> None:
       #press log in button
       driver.find_element(By.XPATH, enter_button).click()
    except:
-      enter_button_alternate = "//div[@role='button']"
+      enter_button_alternate = "//button[@name='login']"
       driver.find_element(By.XPATH, enter_button_alternate)
 
    time.sleep(10)
