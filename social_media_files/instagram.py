@@ -206,7 +206,7 @@ def find_user(driver: webdriver.Chrome, username: str) -> None:
    """
 
    # DEBUG: dump full DOM to a file
-   with open(f"/output_logs/{username}log_tags.html", "w", encoding="utf-8") as f:
+   with open(f"/output_logs/{username}_log_tags.html", "w", encoding="utf-8") as f:
       f.write(driver.page_source)
 
    print("DOM dumped to /app/dom_dump.html")
@@ -278,7 +278,7 @@ def execute(username: str, filename: str, length: int = 10) -> None:
       passw_field_alternate = "(//input[@id])[2]"
       driver.find_element(By.XPATH, passw_field_alternate).send_keys(ig_pass)
 
-   time.sleep(3)
+   time.sleep(random.randint(4, 9))
 
    try:
       #press log in button
@@ -349,7 +349,15 @@ def main():
       length=params["length"]
 
       print(f"\n[INFO] Running scraper for: {username}")
-      execute(username, filename, length)
+
+      waiting_line = random.randint(60, 300)
+
+      try:
+         execute(username, filename, length)
+      except:
+         print(f"error, trying again in: {waiting_line}")
+         time.sleep(waiting_line)
+         execute(username, filename, length)
 
       random_sleeper = random.randint(5, 30)
       time.sleep(random_sleeper)
