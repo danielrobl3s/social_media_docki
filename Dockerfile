@@ -42,6 +42,6 @@ RUN echo '#!/bin/bash\n\
 Xvfb :99 -ac -screen 0 1920x1080x24 &\n\
 export DISPLAY=:99\n\
 sleep 5\n\
-python3 social_media_files/instagram.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+python3 social_media_files/facebook.py' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
 CMD ["/app/entrypoint.sh"]

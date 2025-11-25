@@ -55,7 +55,7 @@ def pandas_to_csv(data: list[dict], filename: str) -> None:
     df = pd.DataFrame([item for item in data])
     
     # Save the DataFrame to a CSV file
-    df.to_csv(f'{filename}.csv', index=False)
+    df.to_csv(f'/output_logs/{filename}.csv', index=False)
 
 
 
@@ -299,16 +299,28 @@ def main():
    """
 
    with open("params.json", "r") as f:
-    params = json.load(f)
+    params_list = json.load(f)
 
-   username=params["username"]
-   filename=params["filename"]
-   length=params["length"]
-   year=params["year"]
-   month=params["month"]
-   day=params["day"]
+   
+   for params in params_list:
 
-   execute(username, filename, length, year, month, day)
+      username=params["username"]
+      filename=params["filename"]
+      length=params["length"]
+      year=params["year"]
+      month=params["month"]
+      day=params["day"]
+
+      try:
+         execute(username, filename, length, year, month, day)
+      except:
+         waiting_line = random.randint(60, 300)
+         print(f"error, trying again in: {waiting_line}")
+         time.sleep(waiting_line)
+         execute(username, filename, length, year, month, day)
+      
+      random_sleeper = random.randint(5, 30)
+      time.sleep(random_sleeper)
 
    # # Display the menu to the user
    # menu = input("Welcome to the Facebook scraper script!, please select an option: \n"

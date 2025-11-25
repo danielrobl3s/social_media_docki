@@ -1,8 +1,74 @@
-{
-   "username": "postadurango",
-   "filename": "postadurango_test",
-   "length": 10,
-   "year": "",
-   "month": "",
-   "day": ""
-}
+[
+  {
+    "username": "profile.php?id=61556066550444",
+    "filename": "postayucatan_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTADurango",
+    "filename": "posta_durango_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTAMEXICO",
+    "filename": "posta_mexico_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTATamauliipas",
+    "filename": "posta_tamaulipas_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTAmx",
+    "filename": "posta_mx_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTABajaCS",
+    "filename": "posta_bajacs_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTACoahuila",
+    "filename": "posta_Coahuila_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTACDMX",
+    "filename": "posta_cdmx_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  },
+  {
+    "username": "POSTAEdomex",
+    "filename": "posta_edomex_test_fb",
+    "length": 2,
+    "year": "",
+    "month": "",
+    "day": ""
+  }
+]
